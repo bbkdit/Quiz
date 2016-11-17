@@ -53,9 +53,5 @@
      
 @endsection
 
- @foreach ($questions as $quizs)
-      
-      {{$quizs->question_name }}
-
-      @endforeach 
+ 
  
