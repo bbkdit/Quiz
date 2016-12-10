@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
-
+use Closure;
 class VerifyCsrfToken extends BaseVerifier
 {
     /**
@@ -11,7 +11,13 @@ class VerifyCsrfToken extends BaseVerifier
      *
      * @var array
      */
-    protected $except = [
-        '/*'
-    ];
+    public function handle($request, closure $next)
+    {
+    	return parent::handle($request, $next);
+    }
+    protected function tokensMatch($request){
+    	$token=$request->ajax() ? $request->header('X-CSRF-Token') : $request->input('-token');
+    	return $request->session()->token() == $token;
+    }
+
 }

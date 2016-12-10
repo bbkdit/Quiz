@@ -1,0 +1,185 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>new page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+   .list-group {
+      top: 50px;
+  
+       margin-left: -250px;
+       left: 245px;
+       width: 245px;
+       background: #000;
+       position: fixed;
+       height: 100%;
+       overflow-y: auto;
+       z-index: 1000;
+       transition: all 0.4s ease 0s;
+      }
+
+      
+  
+  </style>
+  
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      
+      <a class="navbar-brand" href="#">LOGO</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+     
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#1">menu 1</a></li>
+        <li><a href="#2">menu 2</a></li>
+        <li><a href="#3">menu 3</a></li>
+        <li><a href="#4">menu 4</a></li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="col-sm-2 fixed-top">
+<div class="list-group">
+
+<ul class="nav nav-staked" id="sidemnu">
+        <li><a href="#1">Question 1</a></li>
+        <li><a href="#2">Question 2</a></li>
+        <li><a href="#3">Question 3</a></li>
+        <li><a href="#4">Question 4</a></li>
+        <li><a href="#">Question 5</a></li>
+        
+      </ul>
+  <!--<button type="button" class="list-group-item">Cras justo odio</button>
+  <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
+  <button type="button" class="list-group-item">Morbi leo risus</button>
+  <button type="button" class="list-group-item">Porta ac consectetur ac</button>
+  <button type="button" class="list-group-item">Vestibulum at eros</button>
+  -->
+</div>
+</div>
+<div class="col-sm-10">
+<div>
+
+  <div class="panel panel-default">
+
+  
+  <div class="panel-body"><h4><span class="label label-default">Q.</span>  How to add smooth scroll effect in one page menu for web professionals?</h4>
+     
+
+
+                    
+    
+      <div class="well">
+      <h2>{{$quiz->quiz_name}}</h2><br>
+      <p>{{$quiz->quiz_desc}}</p>
+      
+     @if(count($questions) > 0)
+     
+    @foreach ($questions as $question)
+    <div id="1" style="min-height: 700px; background:#F0FFFF;">
+      
+        <li><h3>{{ $question->question_name }}<h3></li><br><br>
+        <form>
+    <label class="radio-inline">
+      <input type="radio" name="optradio"><b>A</b>.&nbsp;&nbsp;{{ $question->option_a }}
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="optradio"><b>B</b>.&nbsp;&nbsp;{{ $question->option_b }}
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="optradio"><b>C</b>.&nbsp;&nbsp;{{ $question->option_c }}
+    </label>
+     <label class="radio-inline">
+      <input type="radio" name="optradio"><b>D</b>.&nbsp;&nbsp;{{ $question->option_d }}
+    </label>
+  </form><br>
+ 
+    
+        <td><br><br><button type="button" class="btn btn-info" id="flip">check</button></td>
+        </tr>
+       </div>
+      @endforeach
+   
+                    @endif
+                   
+
+  </div>
+</div>
+</div>
+<div id="2" style="min-height: 700px; background:#F8F8FF;">
+<br><br><br><br><br>
+  <div class="panel panel-default">
+  
+  <div class="panel-body">qsn 2</div>
+</div>
+</div>
+
+<div id="3" style="min-height: 700px; background:yellow;">
+<br><br><br><br><br>
+  <div class="panel panel-default">
+ 
+  <div class="panel-body">qsn 3</div>
+</div>
+</div>
+
+<div id="4" style="min-height: 700px; background:#F8F8EE;">
+<br><br><br><br><br>
+  <div class="panel panel-default">
+ 
+  <div class="panel-body">
+    
+
+                menu
+                </div>
+</div>
+</div>
+</div>
+</div>
+
+<script src="jquery-3.1.1.min.js"></script>
+<script>
+  $(document).ready(function(){
+  $('a[href*=#]').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+    && location.hostname == this.hostname) {
+      var $target = $(this.hash);
+      $target = $target.length && $target
+      || $('[name=' + this.hash.slice(1) +']');
+      if ($target.length) {
+        var targetOffset = $target.offset().top;
+        $('html,body')
+        .animate({scrollTop: targetOffset}, 15000);
+       return false;
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+

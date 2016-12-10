@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/home', 'HomeController@index');
 Route::group(['middleware' => ['web']], function () {
 Route::get('show/{id}','MyController@show');
 Route::get('edit/{id}','MyController@edit');
@@ -36,14 +37,14 @@ Route::post('quiz/{id}/question/add',
 
     //Route::get('/', function () {
    // return view('welcome');
-   //});
+    //});
 
    Route::get('/','QuizzController@showatwlcm');
     Route::get('/profile','QuizzController@userprofile');
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+
 Route::get('createn', function () {
     return view('create');
 });
@@ -53,6 +54,5 @@ Route::get('/create/{id}','QuizzController@getCreateQuizPage');
 Route::post('new_quiz','QuizzController@createNewQuiz');
 Route::post('/new_question/{id}/add','QuizzController@createNewQuestion');
 Route::get('/quizqsn','QuizzController@getQuizesQsn');
-
-
+Route::post('/ajaxrequest','QuizzController@ans');
 });

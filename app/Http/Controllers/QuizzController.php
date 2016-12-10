@@ -8,8 +8,6 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use App\quizz;
 use App\Questions;
-use App\Options;
-use App\Answers;
 use App\MyQuestion;
 use App\User;
 class QuizzController extends Controller
@@ -51,34 +49,19 @@ class QuizzController extends Controller
 
     public function getQuizesQsn(){
         $data=MyQuestion::all();
-
         return view('allquestions',compact("data"));
         
     }
 
     public function displayqsn($id){
-
 	$questions=MyQuestion::where('quiz_id','=',$id)->get();
 	$quiz=quizz::find($id);
-	
-     return view('singlequiz',compact("questions","quiz"));
+	$i=0;
+     return view('singlequiz',compact("questions","quiz"))->with('i');
 
     }
 
-	/**
-	* Get all the quizes
-	*
-	**
-	public function getQuizes(){
-		$quizes = quizz::all();
-		return view('quizz')->with(['quizes' => $quizes]);
-	}
-     
-
-	/**
-	*
-	* Create a quiz
-	**/
+  
 	public function createNewQuiz(Request $request){
 		$bs = new quizz; //model from database
     $bs->quiz_name = Input::get('quiz_name');
@@ -94,8 +77,6 @@ class QuizzController extends Controller
         return redirect('quiz');
 
     }
-
-
 
 	public function createNewQuestion(Request $request,$id){
     $bss = new  MyQuestion;
@@ -114,50 +95,21 @@ class QuizzController extends Controller
         $questions = MyQuestion::all();
         return view('allquestions',compact("questions"));
     }
+//<----ajax request--->
+    public function ans(Request $request){
+    	   //$data = $request->all();
+    	   //var_dump($data);
 
+    	   $qzid=$request->qzid;
+    	   $qsnid=$request->qsnid;
+    	   $cans=$request->chkd;
 
-  
-	/**
-	* Create new question
-	*
-	**
-	public function createNewQuestion(Request $req,$id){
-		$quiz_id=$id;
-		$question_table_data = [
-			'question_name' => $req->input('question_name')
-			'option_a' => $req->input('option_a')
-			'option_b' => $req->input('option_b')
-			'option_c' => $req->input('option_c')
-			'option_d' => $req->input('option_d')
-			'correct_answers' => $req->input('correct_answer')
-		];
-		$this->validate($req,[
-			'question_name' => 'required',
-			
-		]);
-		$question_id = \DB::table('my_questions')->insertGetId($question_table_data);
-	}
-		/*if($question_id != null){
-			\DB::table('question_categories')->insert([
-				'question_id' => $question_id,
-				'quiz_id' => $quiz_id,
-			]);
-			\DB::table('skill_question')->insert([
-				'skill_id' => $req->input('skill'),
-				'question_id' => $question_id
-			]);
-			$options_table_data =[
-				['option' => $req->input('option1'),'question_id' => $question_id],
-				['option' => $req->input('option2'),'question_id' => $question_id],
-				['option' => $req->input('option3'),'question_id' => $question_id],
-				['option' => $req->input('option4'),'question_id' => $question_id]
-			];
-			\DB::table('options')->insert($options_table_data);
-			return redirect()->back()->withErrors(['Question added successfully! Go to the question page to add answers or continue adding questions!']);
-		}else{
-			return redirect()->back()->withErrors(['Something went wrong! Please try again or contact the developer!']);
-		}
-	}*/
+    	$questions=MyQuestion::where('quiz_id','=',$qzid)->get();
+        if($questions->correct_answer==$cans)
+    	{
+    		return "correct answer";
+    	 }
+        }
 
 	public function showrelation($id){
          $comment= new quizz;

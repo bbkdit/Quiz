@@ -26,17 +26,17 @@
     @foreach ($data as $question)
       <tr class="table table-bordered">
         <td >{{ $question->question_name }}<br><br>
-        <form>
-    <label class="radio-inline">
+        <form style="padding-left: 30px;">
+    <label class="radio">
       <input type="radio" name="optradio"><b>A</b>.&nbsp;&nbsp;{{ $question->option_a }}
     </label>
-    <label class="radio-inline">
+    <label class="radio">
       <input type="radio" name="optradio"><b>B</b>.&nbsp;&nbsp;{{ $question->option_b }}
     </label>
-    <label class="radio-inline">
+    <label class="radio">
       <input type="radio" name="optradio"><b>C</b>.&nbsp;&nbsp;{{ $question->option_c }}
     </label>
-     <label class="radio-inline">
+     <label class="radio">
       <input type="radio" name="optradio"><b>D</b>.&nbsp;&nbsp;{{ $question->option_d }}
     </label>
   </form><br>
